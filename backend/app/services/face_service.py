@@ -12,10 +12,11 @@ from app.services.storage_service import get_storage_service
 
 # Initialize high-accuracy SCRFD detector (10G with keypoints) and ResNet ArcFace recognizer
 detector = SCRFD(
-    model_name=SCRFDWeights.SCRFD_10G_KPS,
-    confidence_threshold=0.5,
-    nms_threshold=0.4,
-    input_size=(640, 640)
+    model_name=SCRFDWeights.SCRFD_500M_KPS,
+confidence_threshold=0.5,
+nms_threshold=0.4,
+input_size=(512, 512),
+providers=["CPUExecutionProvider"]
 )
 recognizer = ArcFace(model_name=ArcFaceWeights.RESNET)
 _analyzer = FaceAnalyzer(detector=detector, recognizer=recognizer)
